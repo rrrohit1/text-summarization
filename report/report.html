@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="abstract">Abstract</h1>
+<p>The report outlines steps for loading, inspecting, and preprocessing the dataset to ensure data quality and readiness for analysis. It elaborates on the challenges of loading and training large language models (LLMs) on limited resources, opting for smaller versions of T5 and BART instead. It evaluates model performance using ROUGE metrics, highlighting the superior results of fine-tuned DistilBART over the baseline flan-t5-small. The report includes metric results and emphasizes the effectiveness of DistilBART in preserving original text information. Finally, it provides an example input for inference using the fine-tuned model.</p>
+<h1 id="data-sanity-checks">Data Sanity Checks</h1>
+<h3 id="steps-to-check-the-quality-of-the-data">Steps to Check the Quality of the Data</h3>
+<ol>
+<li>
+<p><strong>Loading the Dataset</strong>:</p>
+<ul>
+<li>The dataset was loaded into a pandas DataFrame using <code>pd.read_csv()</code>. This step ensures that the data is in a structured format for further analysis and preprocessing.</li>
+</ul>
+</li>
+<li>
+<p><strong>Initial Inspection</strong>:</p>
+<ul>
+<li><strong>Head and Tail</strong>: Used <code>df.head()</code> and <code>df.tail()</code> to inspect the first and last few rows of the dataset. This helps in understanding the structure and content of the data.</li>
+<li><strong>Describe</strong>: Used <code>df.describe()</code> to get statistical summaries of the numerical columns, which helps in identifying any anomalies or outliers.</li>
+</ul>
+</li>
+<li>
+<p><strong>Checking for Missing Values</strong>:</p>
+<ul>
+<li>Used <code>df.isna().sum()</code> to check for missing values in each column. This helps in identifying columns that may require imputation or removal.</li>
+</ul>
+</li>
+<li>
+<p><strong>Exploratory Data Analysis (EDA)</strong>:</p>
+<ul>
+<li><strong>Histograms and Boxplots</strong>: Plotted histograms and boxplots for numerical columns to visualize the distribution and identify any outliers.
+<img src="img/image.png" alt="alt text"></li>
+</ul>
+</li>
+<li>
+<p><strong>Data Transformation</strong>:</p>
+<ul>
+<li>Applied various text preprocessing functions to clean and standardize the text data. This includes expanding contractions, removing punctuation, numbers, stopwords, accented characters, and special characters. For text data, checked for common issues such as:
+<ul>
+<li><strong>Contractions</strong>: Expanded contractions using the <code>expand_contractions</code> function to ensure consistency in text data.</li>
+<li><strong>Punctuation</strong>: Removed punctuation using the <code>rm_punc_from_text</code> function to clean the text.</li>
+<li><strong>Numbers</strong>: Removed numbers using the <code>rm_number_from_text</code> function to focus on textual content.</li>
+<li><strong>Stopwords</strong>: Removed stopwords using the <code>rm_stopwords_from_text</code> function to reduce noise in the text data.</li>
+<li><strong>Accented Characters</strong>: Removed accented characters using the <code>remove_accented_chars</code> function to standardize the text.</li>
+<li><strong>Special Characters</strong>: Removed special characters using the <code>remove_special_characters</code> function to clean the text further.</li>
+<li><strong>Additional Cleaning</strong>: Applied the <code>more_cleaning</code> function to handle specific text cleaning tasks such as removing extra white spaces, special patterns, and URLs.
+All of this in executed in the <code>src/preprocess.py</code> script.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>By following these steps, the quality of the data was thoroughly checked and improved, ensuring that it is clean, consistent, and ready for further analysis or modeling.</p>
+<h1 id="model-selection">Model Selection</h1>
+<h2 id="selecting-models-for-text-summarization">Selecting Models for Text Summarization</h2>
+<p>When selecting models to summarize text, consider the following factors:</p>
+<table>
+<thead>
+<tr>
+<th>Criteria</th>
+<th>Option 1</th>
+<th>Option 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Text Length and Complexity</strong></td>
+<td><strong>Short to Medium Text:</strong> Models like T5 or BART are effective, as they are pretrained for summarization tasks.</td>
+<td><strong>Long or Complex Text:</strong> Consider hierarchical models like PEGASUS or Longformer, which can handle longer documents efficiently.</td>
+</tr>
+<tr>
+<td><strong>Domain Specificity</strong></td>
+<td><strong>General Text:</strong> Pretrained models like BART or T5 work well out-of-the-box.</td>
+<td><strong>Domain-Specific Text:</strong> Fine-tuning models like GPT-3 or LLaMA on domain-specific data can yield better summaries.</td>
+</tr>
+<tr>
+<td><strong>Resource Constraints</strong></td>
+<td><strong>Low Resources:</strong> Lightweight models like DistilBART or DistilT5 are faster and require less computation.</td>
+<td><strong>High Resources:</strong> Larger models like GPT-3 or LLaMA offer more nuanced summaries at the cost of higher computational power.</td>
+</tr>
+<tr>
+<td><strong>Output Preferences</strong></td>
+<td><strong>Abstractive Summarization:</strong> Choose models like BART or T5.</td>
+<td><strong>Extractive Summarization:</strong> Models like BERTSUM are better suited for extracting key sentences.</td>
+</tr>
+</tbody>
+</table>
+<p>In our case, we have <code>short to medium text</code>, related to news articles, with low resources and generalized summary should suffice.</p>
+<p>Two good chocies are: <strong>flan-t5-small</strong> and <strong>DistilBART.</strong>
+We have used flan-t5-small as the baseline model and distilbart-cnn-12-6 (trained on CNN news) as our model choice on which our data is trained. Using a pre-trained model on domain-specific data leverages general language understanding while adapting to specific nuances. This approach enhances performance, reduces training time, and efficiently utilizes limited data, making it both effective and cost-efficient.</p>
+<h2 id="resources-used">Resources used</h2>
+<h3 id="local-machine-used-for-baseline-model-loading-and-inference">Local machine (used for baseline model loading and inference)</h3>
+<ul>
+<li><strong>Processor</strong>: Apple M1 chip with 8-core CPU (4 performance cores and 4 efficiency cores)</li>
+<li><strong>Memory</strong>: 8GB unified memory</li>
+</ul>
+<h3 id="cloud---google-colab-used-for-training-distilbart-training">Cloud - Google Colab (used for training DistilBART training)</h3>
+<ul>
+<li><strong>Processor</strong>:  Virtual CPUs (varying number of cores, typically 2-4)</li>
+<li><strong>Memory</strong>: 12GB RAM</li>
+<li><strong>GPU</strong>: Access to NVIDIA T4 - 16 GB</li>
+</ul>
+<p>With these resources, it becomes difficult to load and train LLM models like GPT, Llama3, etc. So, our choice of using smaller versions of T5 and BART remains intact.</p>
+<h1 id="evaluation-metrics">Evaluation Metrics</h1>
+<p>Given that we have a training set with both text and summaries, ROUGE metrics are particularly helpful because they directly compare the model-generated summaries against the reference summaries in the dataset. Specifically:</p>
+<ul>
+<li>
+<p><strong>ROUGE-N (ROUGE-1, ROUGE-2)</strong>: Useful for measuring the overlap of unigrams and bigrams between the model-generated summaries and the reference summaries.</p>
+</li>
+<li>
+<p><strong>ROUGE-L:</strong> Helps evaluate whether your model maintains the structure and sequence of the original content.</p>
+</li>
+</ul>
+<p>These metrics are widely used in text summarization tasks and will provide a clear indication of how closely your model's summaries match the reference summaries in your training set.</p>
+<p>The metric results for the baseline <strong>flan-t5-small</strong> are given below:</p>
+<p><img src="img/metric_flan.png" alt="alt text"></p>
+<p>The metric results for the fine-tuned <strong>DistilBART</strong> are given below:</p>
+<p><img src="img/metric_bart.png" alt="alt text"></p>
+<p>We can observe that the fine-tuned DistilBART gives significantly better scores and is able to preserve a lot more information about the original text in the generated summary.</p>
+<h1 id="use-fine-tuned-model-for-infernce">Use fine-tuned model for infernce</h1>
+<pre class="hljs"><code><div># Use a longer text. Given below is a placeholder example
+INPUT = &quot;watch exclusive exposing poor administration amount criticising govt dig roopa india today&quot;
+
+from transformers import pipeline
+
+pipe = pipeline(&quot;summarization&quot;, model=&quot;rrrohit/distilbart-cnn-12-6_finetuned&quot;)
+
+pipe(INPUT, max_length=200, min_length=30, do_sample=False)[0]['summary_text']
+</div></code></pre>
+<h1 id="future-work">Future Work</h1>
+<h2 id="handling-long-documents">Handling Long Documents</h2>
+<blockquote>
+<p>Work-in-progess at <code>src/chunking.py</code></p>
+</blockquote>
+<p>For dealing with long documents, we have used chunking to summarize individual chunks of the long document and then add them up. This handles large documents efficiently, and the text can be broken down into relatively independent segments. This method is suitable for a broad range of documents where global coherence is less critical, or where the focus is on extracting key points from each chunk.</p>
+<ul>
+<li><strong>Scalability</strong>: When the document is too long to be processed by standard models due to memory constraints or token limitations (like the max token limit in transformer models).</li>
+<li><strong>Simplicity</strong>: When the document doesn’t require deep cross-sectional understanding, and a straightforward summarization of chunks is sufficient.</li>
+<li><strong>Resource Constraints</strong>: When you have limited computational resources, as chunking is simpler and requires less processing power compared to hierarchical models.</li>
+</ul>
+<h2 id="explainability-of-the-model">Explainability of the Model</h2>
+<blockquote>
+<p>Work-in-progess at <code>notebooks/explain_model.py</code></p>
+</blockquote>
+<p>SHAP provides a more detailed, model-agnostic explanation. An alternative could be using Attention Visualization (for transformer-based models).</p>
+<ul>
+<li>
+<p><strong>Use LLMs to generate better summaries</strong></p>
+</li>
+<li>
+<p><strong>Parse/convert the generated/predicted text into structured English</strong></p>
+</li>
+<li>
+<p><strong>Model fine-tuning for longer epochs, trying different learning rates</strong></p>
+</li>
+</ul>
+
+</body>
+</html>
