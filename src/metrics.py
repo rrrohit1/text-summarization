@@ -3,6 +3,17 @@ from bert_score import BERTScorer
 import pandas as pd
 
 def calculate_metrics(reference_1, reference_2):
+    """
+    Calculates the ROUGE and BERT scores for the given reference texts.
+
+    Args:
+        reference_1 (str): The first reference text.
+        reference_2 (str): The second reference text.
+
+    Returns:
+        pandas.DataFrame: A DataFrame containing the calculated ROUGE and BERT scores.
+
+    """
 
     # Initialize the Rouge object
     rouge = Rouge()
